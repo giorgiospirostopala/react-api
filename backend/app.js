@@ -1,21 +1,24 @@
-const express = require("express");
-const cors = require("cors");
-const posts = require("./posts");
+// const express = require("express");
+// const cors = require("cors");
 
-const app = express();
-const PORT = 3000;
+// const postRouter = require("./routers/postsRouter");
 
-app.use(cors());
-app.use(express.json());
+// const app = express();
+// const PORT = 3000;
 
-app.get("/", (req, res) => {
-    res.send("Home");
-});
+// app.use(cors());
+// app.use(express.json());
 
-app.get("/posts", (req, res) => {
-    res.json(posts);
-});
+// app.use("/api/posts", postRouter);
 
-app.listen(PORT, () => {
-    console.log(`Server avviato su http://localhost:${PORT}`);
-});
+// app.get("/", (req, res) => {
+//     res.send("Home");
+// });
+
+// app.use((req, res, next) => {
+//     res.status(404).json({ error: "Not Found" });
+// });
+
+// app.listen(PORT, () => {
+//     console.log(`Server avviato su http://localhost:${PORT}`);
+// });

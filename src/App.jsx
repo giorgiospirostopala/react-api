@@ -18,7 +18,9 @@ function App() {
 
   return (
     <>
-      
+      <style>{`
+        th, td { border: 1px solid black; }
+      `}</style>
 
       <h1>Posts</h1>
       <div>

@@ -1,33 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import axios from "axios"
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const endpoint = 'http://localhost:3000/api/posts';
+  const [posts, setPosts] = useState([]);
+
+  const fetchPosts = () => {
+    axios
+      .get(endpoint)
+      .then((res) => setPosts(res.data))
+      .catch(err => console.error(err));
+  };
+
+  useEffect(fetchPosts, []);
+
 
   return (
     <>
+      
+
+      <h1>Posts</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>TITOLO</th>
+              <th>IMMAGINE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((p) => {
+              return (
+                <tr key={p.id}>
+                  <td>{p.id}</td>
+                  <td>{p.title}</td>
+                  <td>{p.image}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
